@@ -1,10 +1,8 @@
-import './App.scss'
+import "./App.scss"
+import Header from "./components/Header/Header"
 
 function App() {
-
-  return (
-    <>Project started</>
-  )
+	return <Header />
 }
 
 export default App
