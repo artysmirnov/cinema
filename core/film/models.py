@@ -2,9 +2,12 @@ from django.db import models
 from psycopg2.sql import NULL
 
 from core.abstract.models import AbstractModel, AbstractManager
+from core.person.models import Person
+
 
 class FilmManager(AbstractManager):
     pass
+
 
 class Film(AbstractModel):
     title = models.CharField(max_length=255)
@@ -13,6 +16,8 @@ class Film(AbstractModel):
     rating = models.CharField(max_length=255)
     release_date = models.DateField()
     photo = models.ImageField(upload_to="poster/%Y/%m/%d", default=None, blank=True, null=True)
+    actors = models.ManyToManyField(Person)
+
     class AgeLimit(models.TextChoices):
         ZERO = "0+"
         SIX = "6+"

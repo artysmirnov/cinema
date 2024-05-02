@@ -52,7 +52,6 @@ class UserManager(BaseUserManager, AbstractManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin, AbstractModel):
-    public_id = models.UUIDField(db_index=True, unique=True, default=uuid.uuid4, editable=False)
     username = models.CharField(db_index=True, max_length=255, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -63,9 +62,6 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractModel):
     is_staff = models.BooleanField(default=False)
 
     bio = models.TextField(null=True)
-
-    created = models.DateTimeField(auto_now=True)
-    updated = models.DateTimeField(auto_now_add=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

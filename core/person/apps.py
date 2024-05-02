@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 
 
-class FilmConfig(AppConfig):
+class PersonConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'core.film'
-    label = 'core_film'
+    name = 'core.person'
+    label = "core_person"
