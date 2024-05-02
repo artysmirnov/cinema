@@ -1,6 +1,7 @@
 from rest_framework import routers
 from core.auth.viewsets import RegisterViewSet, LoginViewSet, RefreshViewSet
 from core.film.viewsets import FilmViewSet
+from core.person.viewsets import PersonViewSet
 from core.user.viewsets import UserViewSet
 
 
@@ -17,6 +18,8 @@ router.register(r'auth/refresh', RefreshViewSet, basename='auth-refresh')
 
 
 router.register(r'film', FilmViewSet, basename='film')
+
+router.register(r'person', PersonViewSet, basename='person')
 
 urlpatterns = [
     *router.urls,

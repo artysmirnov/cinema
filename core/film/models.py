@@ -16,7 +16,7 @@ class Film(AbstractModel):
     rating = models.CharField(max_length=255)
     release_date = models.DateField()
     photo = models.ImageField(upload_to="poster/%Y/%m/%d", default=None, blank=True, null=True)
-    actors = models.ManyToManyField(Person)
+    actors = models.ManyToManyField("core_person.Person", related_name="actors")
 
     class AgeLimit(models.TextChoices):
         ZERO = "0+"

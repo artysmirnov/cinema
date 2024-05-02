@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'core',
     'core.user',
     'core.film',
-    'core.person'
+    'core.person',
 ]
 
 AUTH_USER_MODEL = 'core_user.User'
