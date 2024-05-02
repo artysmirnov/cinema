@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 from dotenv import dotenv_values
 
@@ -150,3 +150,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
+STATIC_URL = '/media/'
+STATIC_ROOT = 'static'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'media'),
+)

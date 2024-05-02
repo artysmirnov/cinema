@@ -9,4 +9,4 @@ from core.film.models import Film
 class FilmSerializer(AbstractSerializer):
     class Meta:
         model = Film
-        fields = ['id', 'title', 'genre', 'country', 'rating', 'age_limit']
+        fields = ['id', 'title', 'genre', 'country', 'rating', 'age_limit', 'release_date', 'photo']

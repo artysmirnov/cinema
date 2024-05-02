@@ -11,6 +11,8 @@ class Film(AbstractModel):
     genre = models.CharField(max_length=255)
     country = models.CharField(max_length=255)
     rating = models.CharField(max_length=255)
+    release_date = models.DateField()
+    photo = models.ImageField(upload_to="poster/%Y/%m/%d", default=None, blank=True, null=True)
     class AgeLimit(models.TextChoices):
         ZERO = "0+"
         SIX = "6+"
