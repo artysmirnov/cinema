@@ -18,7 +18,7 @@ class Film(AbstractModel):
     photo = models.ImageField(upload_to="poster/%Y/%m/%d", default=None, blank=True, null=True)
     actors = models.ManyToManyField(Person)
     slug = models.SlugField(blank=True, null=True)
-    description = models.TextField(blank=True,null=True)
+    description = models.TextField(blank=True, null=True)
     active = models.BooleanField(default=True)
 
     class AgeLimit(models.TextChoices):

@@ -6,6 +6,7 @@ from core.abstract.models import AbstractModel
 class Person(AbstractModel):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
 
     class Role(models.TextChoices):
         ACTOR = "actor"

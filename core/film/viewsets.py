@@ -6,4 +6,4 @@ class FilmViewSet(viewsets.ModelViewSet):
     serializer_class = FilmSerializer
 
     def get_queryset(self):
-        return FilmSerializer(Film.objects.prefetch_related('actors').filter(active=True), many=True).data
+        return FilmSerializer(Film.objects.prefetch_related('actors').all().filter(active=True), many=True).data
