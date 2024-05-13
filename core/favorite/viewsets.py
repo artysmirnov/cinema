@@ -9,7 +9,7 @@ class FavoriteFilmViewSet(viewsets.ModelViewSet):
     serializer_class = FavoriteFilmSerializer
 
     def get_queryset(self):
-        return Favorite.objects.filter(user=self.request.user)  # Фильтруем queryset для текущего пользователя
+        return Favorite.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

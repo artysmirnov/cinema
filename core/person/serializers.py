@@ -5,4 +5,4 @@ from core.person.models import Person
 class PersonSerializer(AbstractSerializer):
     class Meta:
         model = Person
-        fields = '__all__'
+        fields = ['id', 'first_name', 'last_name', 'role', 'bio']

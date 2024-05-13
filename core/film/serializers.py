@@ -10,6 +10,7 @@ from core.person.serializers import PersonSerializer
 
 class FilmSerializer(AbstractSerializer):
     actors = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = Film
-        fields = ['title', 'actors', 'age_limit']
+        fields = ['title', 'genre', 'country', 'rating', 'release_date', 'photo', 'description', 'actors', 'age_limit']
