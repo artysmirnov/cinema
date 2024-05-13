@@ -19,3 +19,5 @@ class Person(AbstractModel):
 
     bio = models.TextField(null=True)
 
+
+

@@ -1,17 +1,9 @@
-from rest_framework.permissions import IsAdminUser, AllowAny
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework import viewsets
+from .models import Film
+from .serializers import FilmSerializer
 
-from core.abstract.viewsets import AbstractViewSet
-from core.film.models import Film
-from core.film.serializers import FilmSerializer
-
-
-class FilmViewSet(AbstractViewSet):
-    http_method_names = ('get',)
-    permission_classes = (AllowAny,)
+class FilmViewSet(viewsets.ModelViewSet):
     serializer_class = FilmSerializer
 
     def get_queryset(self):
-        return Film.objects.all()
-
+        return FilmSerializer(Film.objects.prefetch_related('actors').filter(active=True), many=True).data
