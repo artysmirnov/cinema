@@ -13,3 +13,7 @@ class PersonViewSet(AbstractViewSet):
 
     def get_queryset(self):
         return Person.objects.all()
+
+    def get_object(self):
+        obj = Person.objects.get_object_by_public_id(self.kwargs['pk'])
+        return obj
