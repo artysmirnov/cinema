@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'core.film',
     'core.person',
     'core.favorite',
+    'core.score',
 ]
 
 AUTH_USER_MODEL = 'core_user.User'
@@ -95,9 +96,9 @@ WSGI_APPLICATION = 'CoreRoot.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config['DATABASE_NAME'],
-        'USER': config['DATABASE_USER'],
-        'PASSWORD': config['DATABASE_PASSWORD'],
+        'NAME': config['POSTGRES_DB'],
+        'USER': config['POSTGRES_USER'],
+        'PASSWORD': config['POSTGRES_PASSWORD'],
         'HOST': config['DATABASE_HOST'],
         'PORT': config['DATABASE_PORT']
     }
