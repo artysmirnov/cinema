@@ -19,6 +19,8 @@ router.register(r'person', PersonViewSet, basename='person')
 
 router.register(r'favorite', FavoriteFilmViewSet, basename='favorite')
 
+router.register(r'rating', )
+
 urlpatterns = [
     *router.urls,
 ]
