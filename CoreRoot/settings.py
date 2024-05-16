@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'core.film',
     'core.person',
     'core.favorite',
-    'core.score',
+    'core.rating',
 ]
 
 AUTH_USER_MODEL = 'core_user.User'
