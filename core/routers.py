@@ -3,6 +3,7 @@ from core.auth.viewsets import RegisterViewSet, LoginViewSet, RefreshViewSet
 from core.favorite.viewsets import FavoriteFilmViewSet
 from core.film.viewsets import FilmViewSet
 from core.person.viewsets import PersonViewSet
+from core.rating.viewsets import RatingViewSet
 from core.user.viewsets import UserViewSet
 
 router = routers.SimpleRouter()
@@ -19,7 +20,7 @@ router.register(r'person', PersonViewSet, basename='person')
 
 router.register(r'favorite', FavoriteFilmViewSet, basename='favorite')
 
-router.register(r'rating', )
+router.register(r'rating', RatingViewSet, basename='rating')
 
 urlpatterns = [
     *router.urls,
