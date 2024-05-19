@@ -9,9 +9,9 @@ from core.person.serializers import PersonSerializer
 
 
 class FilmSerializer(AbstractSerializer):
-    actors = serializers.StringRelatedField(many=True)
+    actors = PersonSerializer(many=True)
 
     class Meta:
         model = Film
-        fields = ['public_id', 'title', 'genre', 'country', 'rating', 'release_date', 'photo', 'description', 'actors',
+        fields = ['public_id', 'title', 'genre', 'country', 'release_date', 'photo', 'description', 'actors',
                   'age_limit']
