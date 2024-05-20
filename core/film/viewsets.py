@@ -1,10 +1,17 @@
 from rest_framework import viewsets
 from .models import Film
-from .serializers import FilmSerializer
+from .serializers import FilmSerializer, AllFilmsSerializer
+from ..abstract.viewsets import AbstractViewSet
 
 
-class FilmViewSet(viewsets.ModelViewSet):
-    serializer_class = FilmSerializer
+class AllFilmsViewSet(AbstractViewSet):
+    queryset = Film.objects.all()
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            return FilmSerializer
+        else:
+            return AllFilmsSerializer
 
     def get_queryset(self):
         return Film.objects.all()

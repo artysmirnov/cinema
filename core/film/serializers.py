@@ -15,3 +15,10 @@ class FilmSerializer(AbstractSerializer):
         model = Film
         fields = ['public_id', 'title', 'genre', 'country', 'release_date', 'photo', 'description', 'actors',
                   'age_limit']
+
+
+class AllFilmsSerializer(AbstractSerializer):
+    class Meta:
+        model = Film
+        fields = ['public_id', 'title', 'genre', 'country', 'release_date', 'photo',
+                  'age_limit']
