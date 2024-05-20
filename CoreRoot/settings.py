@@ -8,7 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-^%@+)xdj00+06t%=h-p_6t6kij+@2t860ojdxvtn=f1*=)-_j@'
 
-DEBUG = config['DEBUG']
+ENV = config['DEBUG']
+
+DEBUG = False if ENV == "PROD" else True
 
 ALLOWED_HOSTS = []
 
