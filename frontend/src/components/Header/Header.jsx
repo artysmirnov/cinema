@@ -10,7 +10,9 @@ const Header = () => {
 			<Link to={"/my"}>My</Link>
 			<Link to={"/paid"}>Paid</Link>
 			<p href="">Search</p>
-			<img src="#" alt="user" />
+			<Link to={"/register"}>
+				<img src="#" alt="user" />
+			</Link>
 		</div>
 	)
 }

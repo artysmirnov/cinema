@@ -8,6 +8,10 @@ import Home from "./pages/Home.jsx"
 import Catalog from "./pages/Catalog.jsx"
 import My from "./pages/My.jsx"
 import Paid from "./pages/Paid.jsx"
+import Register from "./pages/Register.jsx"
+import Login from "./pages/Login.jsx"
+import { Provider } from "react-redux"
+import { store } from "./store.js"
 
 const router = createBrowserRouter([
 	{
@@ -31,12 +35,22 @@ const router = createBrowserRouter([
 				path: "/paid",
 				element: <Paid />,
 			},
+			{
+				path: "/register",
+				element: <Register />,
+			},
+			{
+				path: "/login",
+				element: <Login />,
+			},
 		],
 	},
 ])
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
 	</React.StrictMode>
 )
