@@ -1,34 +1,31 @@
-version: '3'
+version: "3.9"
 
 services:
-  redis:
-    image: redis:alpine
-  nginx:
-    container_name: cinema_web
-    restart: on-failure
-    image: nginx:latest
+  db:
+    image: postgres:16-alpine
+    container_name: cinema_db
+    volumes:
+      - ~/.pg/pg_data/yt:/var/lib/postgresql/data
+    env_file:
+      - .env
     ports:
-      - "80:80"
-    depends_on:
-      - api
-
+      - "5438:5438"
   api:
     container_name: cinema_api
     build: .
-    restart: always
-    env_file: .env
     ports:
       - "8000:8000"
-    command: >
-      sh -c "python manage.py migrate --no-input && gunicorn CoreRoot.wsgi:application --bind 0.0.0.0:8000"
-    volumes:
-      - .:/app
+    restart: always
     depends_on:
       - db
-      - redis
-  db:
-    container_name: cinema_db
-    image: postgres:16
-    env_file: .env
-    ports:
-      - "5438:5432"
+    volumes:
+      - static_volume:/yt/static
+      - media_volume:/yt/media
+    env_file:
+      - .env
+    command: >
+      sh -c "python manage.py migrate --no-input && gunicorn CoreRoot.wsgi:application --bind 0.0.0.0:8000"
+
+volumes:
+  static_volume:
+  media_volume:
