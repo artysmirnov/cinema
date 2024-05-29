@@ -18,7 +18,26 @@ export const register = createAsyncThunk(
 					password: userData.password,
 				}
 			)
-			return response.data.user
+			return response.data
+		} catch (e) {
+			return thunkAPI.rejectWithValue(e.response.data.errors)
+		}
+	}
+)
+
+export const login = createAsyncThunk(
+	"auth/login",
+	async (userData, thunkAPI) => {
+		try {
+			const response = await axios.post(
+				"http://127.0.0.1:8000/api/auth/login/",
+				{
+					email: userData.email,
+					username: userData.username,
+					password: userData.password,
+				}
+			)
+			return response.data
 		} catch (e) {
 			return thunkAPI.rejectWithValue(e.response.data.errors)
 		}
@@ -38,6 +57,16 @@ const authSlice = createSlice({
 				state.currentUser = action.payload
 			})
 			.addCase(register.rejected, state => {
+				state.loading = false
+			})
+			.addCase(login.pending, state => {
+				state.loading = true
+			})
+			.addCase(login.fulfilled, (state, action) => {
+				state.loading = false
+				state.currentUser = action.payload
+			})
+			.addCase(login.rejected, state => {
 				state.loading = false
 			})
 	},

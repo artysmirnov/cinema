@@ -1,10 +1,11 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { register } from "../Store/UserSlice"
 
 const Register = () => {
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 
 	// states
 	const [email, setEmail] = useState("")
@@ -14,8 +15,16 @@ const Register = () => {
 
 	const onSubmit = e => {
 		e.preventDefault()
-		console.log("register", username, password, email)
 		dispatch(register({ email, username, password }))
+			.then(action => {
+				localStorage.setItem("refresh", action.payload.refresh)
+				localStorage.setItem("token", action.payload.token)
+				localStorage.setItem("user", action.payload.user)
+				navigate("/")
+			})
+			.catch(err => {
+				console.log(err)
+			})
 	}
 
 	return (
