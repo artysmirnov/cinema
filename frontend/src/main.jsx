@@ -11,7 +11,7 @@ import Paid from "./pages/Paid.jsx"
 import Register from "./pages/Register.jsx"
 import Login from "./pages/Login.jsx"
 import { Provider } from "react-redux"
-import { store } from "./store.js"
+import { store } from "./Store/store.js"
 
 const router = createBrowserRouter([
 	{
