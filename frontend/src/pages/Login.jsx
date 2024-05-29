@@ -1,11 +1,33 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
+import { login } from "../Store/UserSlice"
+import { useDispatch } from "react-redux"
+
 const Login = () => {
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
+
+	const onSubmit = e => {
+		e.preventDefault()
+		dispatch(
+			login({
+				email,
+				password,
+			})
+		).then(action => {
+			localStorage.setItem("refresh", action.payload.refresh)
+			localStorage.setItem("token", action.payload.access)
+			localStorage.setItem("user", action.payload.user)
+			navigate("/")
+		})
+	}
+
 	return (
 		<div className="login">
-			<form action="">
+			<form onSubmit={onSubmit}>
 				<h2>Login</h2>
 				<label>Enter email</label>
 				<input
