@@ -16,19 +16,21 @@ const Home = () => {
 	useEffect(() => {
 		fetchFilms(setFilms)
 	}, [])
-	console.log(films[0])
+	console.log(films)
 	return (
 		<div>
-			<p>Home is here</p>
-			<div className="films-container">
-				{loading ? (
-					<p>loading...</p>
-				) : (
-					films.map(film => {
-						;<SingleFilm key={film.id} results={film} />
-					})
-				)}
-			</div>
+			<p>Home is here, welcome</p>
+			{loading ? (
+				<div>loading</div>
+			) : (
+				films.map(film => (
+					<SingleFilm
+						key={film.public_id}
+						name={film.title}
+						photo={film.photo}
+					/>
+				))
+			)}
 		</div>
 	)
 }
