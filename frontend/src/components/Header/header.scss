@@ -8,8 +8,16 @@
 	height: 50px;
 	width: 100%;
 
+	img {
+		height: 40px;
+	}
+
 	a {
 		color: white;
 		text-decoration: none;
+	}
+
+	a:hover {
+		color: yellow;
 	}
 }
