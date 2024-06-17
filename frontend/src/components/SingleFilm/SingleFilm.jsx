@@ -1,9 +1,11 @@
+import "./single_film_photo.scss"
+
 const SingleFilm = ({ name, photo }) => {
 	console.log(photo)
 	return (
 		<div>
 			<p>{name}</p>
-			<img src={photo} alt={name} />
+			<img className="single_film_photo" src={photo} alt={name} />
 		</div>
 	)
 }

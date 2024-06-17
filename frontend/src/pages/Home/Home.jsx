@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
-import SingleFilm from "../components/SingleFilm"
+import SingleFilm from "../../components/SingleFilm/SingleFilm"
+import "./home.scss"
 const Home = () => {
 	const [films, setFilms] = useState([])
 	const [loading, setLoading] = useState(true)
@@ -18,7 +19,7 @@ const Home = () => {
 	}, [])
 	console.log(films)
 	return (
-		<div>
+		<div className="home">
 			<p>Home is here, welcome</p>
 			{loading ? (
 				<div>loading</div>
