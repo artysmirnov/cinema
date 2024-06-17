@@ -13,6 +13,7 @@ import Login from "./pages/Login/Login.jsx"
 import { Provider } from "react-redux"
 import { store } from "./Store/store.js"
 import Account from "./pages/Account/Account.jsx"
+import News from "./pages/News/News.jsx"
 
 const router = createBrowserRouter([
 	{
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
 			{
 				path: "/account",
 				element: <Account />,
+			},
+			{
+				path: "/news",
+				element: <News />,
 			},
 		],
 	},
