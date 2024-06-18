@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import "./header.scss"
+import { FaSearch } from "react-icons/fa"
 
 const Header = () => {
 	const user = localStorage.getItem("token")
@@ -11,7 +12,8 @@ const Header = () => {
 			<Link to={"/catalog"}>Catalog</Link>
 			<Link to={"/my"}>My</Link>
 			<Link to={"/paid"}>Paid</Link>
-			<p href="">Search</p>
+			<FaSearch />
+
 			{user ? (
 				<Link to={"/account"}>
 					<img src="#" alt="user" />
