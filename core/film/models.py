@@ -5,6 +5,7 @@ from django.http import Http404
 from psycopg2.sql import NULL
 
 from core.abstract.models import AbstractModel, AbstractManager
+from core.genre.models import Genre
 from core.person.models import Person
 
 
@@ -19,7 +20,7 @@ class FilmManager(AbstractManager):
 
 class Film(AbstractModel):
     title = models.CharField(max_length=255)
-    genre = models.CharField(max_length=255)
+    genre = models.ManyToManyField(Genre)
     country = models.CharField(max_length=255)
     average_rating = models.PositiveIntegerField(default=None, validators=[MinValueValidator(1), MaxValueValidator(10)])
     release_date = models.DateField()

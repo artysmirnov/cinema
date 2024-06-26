@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'core.person',
     'core.favorite',
     'core.rating',
+    'core.genre'
 ]
 
 AUTH_USER_MODEL = 'core_user.User'
@@ -133,6 +134,3 @@ MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
-)
