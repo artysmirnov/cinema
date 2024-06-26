@@ -1,0 +1,9 @@
+.single_film_photo {
+	width: 250px;
+	border-radius: 10%;
+}
+
+.single_film:hover {
+	transform: scale(1.1);
+	transition: 200ms;
+}

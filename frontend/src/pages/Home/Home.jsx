@@ -14,24 +14,31 @@ const Home = () => {
 			console.log(e)
 		}
 	}
+
 	useEffect(() => {
 		fetchFilms(setFilms)
 	}, [])
+
 	console.log(films)
+
 	return (
 		<div className="home">
-			<p>Home is here, welcome</p>
-			{loading ? (
-				<div>loading</div>
-			) : (
-				films.map(film => (
-					<SingleFilm
-						key={film.public_id}
-						name={film.title}
-						photo={film.photo}
-					/>
-				))
-			)}
+			<div className="film-group">
+				<p>Новые фильмы</p>
+				<div className="film-row">
+					{loading ? (
+						<div>loading</div>
+					) : (
+						films.map(film => (
+							<SingleFilm
+								key={film.public_id}
+								name={film.title}
+								photo={film.photo}
+							/>
+						))
+					)}
+				</div>
+			</div>
 		</div>
 	)
 }
