@@ -1,3 +1,21 @@
 .filmPage {
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+
+	h1 {
+		font-size: 24px;
+	}
+
+	.upperContent {
+		display: flex;
+		flex-direction: row;
+		gap: 30px
+	}
+
+	.infoBlock {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
 }

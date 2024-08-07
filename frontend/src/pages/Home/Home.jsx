@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import SingleFilm from "../../components/SingleFilm/SingleFilm"
 import { fetchMovies } from "../../Store/MoviesSlice"
 import { useDispatch, useSelector } from "react-redux"

@@ -8,7 +8,7 @@ export const fetchMovie = createAsyncThunk(
 		try {
 			const response = await axios.get(`http://127.0.0.1:8000/api/film/${id}`)
 			console.log(response.data)
-			return response.data.results
+			return response.data
 		} catch (error) {
 			return thunkAPI.rejectWithValue("Не удалось зазгрузить фильмы")
 		}
@@ -29,7 +29,7 @@ export const singleSlice = createSlice({
 		[fetchMovie.fulfilled]: (state, action) => {
 			state.isLoading = false
 			state.error = ""
-			state.movies = action.payload
+			state.movie = action.payload
 		},
 		[fetchMovie.pending]: state => {
 			state.isLoading = true
