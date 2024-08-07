@@ -1,5 +1,6 @@
+import "./filmPage.scss"
 const FilmPage = () => {
-	return <div></div>
+	return <div className="filmPage"></div>
 }
 
 export default FilmPage

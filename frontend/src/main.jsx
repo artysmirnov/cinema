@@ -14,6 +14,7 @@ import { Provider } from "react-redux"
 import { store } from "./Store/store.js"
 import Account from "./pages/Account/Account.jsx"
 import News from "./pages/News/News.jsx"
+import FilmPage from "./pages/FilmPage/FilmPage.jsx"
 
 const router = createBrowserRouter([
 	{
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
 			{
 				path: "/news",
 				element: <News />,
+			},
+			{
+				path: "/movie/:id",
+				element: <FilmPage />,
 			},
 		],
 	},
