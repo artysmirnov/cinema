@@ -1,40 +1,27 @@
 import { useEffect, useState } from "react"
 import SingleFilm from "../../components/SingleFilm/SingleFilm"
+import { fetchMovies } from "../../Store/MoviesSlice"
+import { useDispatch, useSelector } from "react-redux"
 import "./home.scss"
 const Home = () => {
-	const [films, setFilms] = useState([])
-	const [loading, setLoading] = useState(true)
-	async function fetchFilms(set) {
-		try {
-			const data = await fetch("http://127.0.0.1:8000/api/film/")
-			const results = await data.json()
-			set(results.results)
-			setLoading(false)
-		} catch (e) {
-			console.log(e)
-		}
-	}
+	const dispatch = useDispatch()
+	const movies = useSelector(state => state.movies.movies)
+	const isLoading = useSelector(state => state.movies.isLoading)
 
 	useEffect(() => {
-		fetchFilms(setFilms)
+		dispatch(fetchMovies())
 	}, [])
-
-	console.log(films)
 
 	return (
 		<div className="home">
 			<div className="film-group">
 				<p>Новые фильмы</p>
 				<div className="film-row">
-					{loading ? (
+					{isLoading ? (
 						<div>loading</div>
 					) : (
-						films.map(film => (
-							<SingleFilm
-								key={film.public_id}
-								name={film.title}
-								photo={film.photo}
-							/>
+						movies.map(movie => (
+							<SingleFilm key={movie.public_id} movie={movie} />
 						))
 					)}
 				</div>

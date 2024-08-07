@@ -2,11 +2,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
-export const fetchMovies = createAsyncThunk(
-	"movies/fetchMovies",
-	async (_, thunkAPI) => {
+export const fetchMovie = createAsyncThunk(
+	"movies/fetchMovie",
+	async (id, thunkAPI) => {
 		try {
-			const response = await axios.get("http://127.0.0.1:8000/api/film/")
+			const response = await axios.get(`http://127.0.0.1:8000/api/film/${id}`)
+			console.log(response.data)
 			return response.data.results
 		} catch (error) {
 			return thunkAPI.rejectWithValue("Не удалось зазгрузить фильмы")
@@ -15,28 +16,28 @@ export const fetchMovies = createAsyncThunk(
 )
 
 const initialState = {
-	movies: [],
+	movie: "",
 	isLoading: false,
 	error: "",
 }
 
-export const moviesSlice = createSlice({
-	name: "movies",
+export const singleSlice = createSlice({
+	name: "movie",
 	initialState,
 	reducers: {},
 	extraReducers: {
-		[fetchMovies.fulfilled]: (state, action) => {
+		[fetchMovie.fulfilled]: (state, action) => {
 			state.isLoading = false
 			state.error = ""
 			state.movies = action.payload
 		},
-		[fetchMovies.pending]: state => {
+		[fetchMovie.pending]: state => {
 			state.isLoading = true
 		},
-		[fetchMovies.rejected]: (state, action) => {
+		[fetchMovie.rejected]: (state, action) => {
 			state.isLoading = false
 			state.error = action.payload
 		},
 	},
 })
-export default moviesSlice.reducer
+export default singleSlice.reducer
