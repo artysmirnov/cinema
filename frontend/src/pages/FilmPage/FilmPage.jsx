@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { useEffect } from "react"
 import { fetchMovie } from "../../Store/SingleSlice"
 import "./filmPage.scss"
+import Stars from "./Stars"
 
 const FilmPage = () => {
 	const params = useParams()
@@ -42,6 +43,7 @@ const FilmPage = () => {
 							)}
 						</div>
 					</div>
+					<Stars />
 					<p>Описание: {movie.description}</p>
 				</div>
 			)}
