@@ -29,9 +29,17 @@ const FilmPage = () => {
 						/>
 						<div className="infoBlock">
 							<h1>{movie.title}</h1>
-							<p>Дата выхода {movie.release_date}</p>
-							<p>Страна {movie.country}</p>
-							<p>Возрастное ограничение {movie.age_limit}</p>
+							{movie.release_date && <p>Дата выхода: {movie.release_date}</p>}
+							{movie.country && <p>Страна: {movie.country}</p>}
+							{movie.age_limit && (
+								<p>Возрастное ограничение: {movie.age_limit}</p>
+							)}
+							{movie.genre && (
+								<p>
+									Жанры:
+									{" " + movie.genre.map(item => item.genre)}
+								</p>
+							)}
 						</div>
 					</div>
 					<p>Описание: {movie.description}</p>
