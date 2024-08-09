@@ -6,7 +6,7 @@ const SingleFilm = ({ movie }) => {
 		<Link to={`movie/${movie.public_id}`}>
 			<div className="single_film">
 				<img className="single_film_photo" src={movie.photo} alt={movie.name} />
-				<p>{name}</p>
+				<p>{movie.title}</p>
 			</div>
 		</Link>
 	)
