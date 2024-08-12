@@ -32,7 +32,7 @@ const FilmPage = () => {
 			{isLoading ? (
 				<p>loading</p>
 			) : (
-				<div>
+				<div className="film_page_full">
 					<div className="upperContent">
 						<img
 							className="single_film_photo"

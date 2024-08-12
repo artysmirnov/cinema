@@ -8,6 +8,13 @@
 	transition: 200ms;
 }
 
+.single_film_center {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
 .single_film {
 	height: 100%;
 	display: flex;
