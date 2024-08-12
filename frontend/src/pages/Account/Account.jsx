@@ -1,8 +1,18 @@
 import "./account.scss"
+import { Link } from "react-router-dom"
 const Account = () => {
 	return (
 		<div className="account">
-			<p>Account is here</p>
+			<Link
+				onClick={() => {
+					localStorage.removeItem("refresh")
+					localStorage.removeItem("user")
+					localStorage.removeItem("token")
+				}}
+				to={"/login"}
+			>
+				Выйти
+			</Link>
 		</div>
 	)
 }

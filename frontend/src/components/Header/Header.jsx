@@ -1,9 +1,18 @@
 import { Link } from "react-router-dom"
 import "./header.scss"
 import { FaSearch } from "react-icons/fa"
+import { useEffect, useState } from "react"
 
 const Header = () => {
-	const user = localStorage.getItem("token")
+	const user = localStorage.getItem("user")
+	const [authenticated, setAuthenticated] = useState(false)
+	useEffect(() => {
+		if (user) {
+			setAuthenticated(true)
+		} else {
+			setAuthenticated(false)
+		}
+	}, [user])
 	return (
 		<div className="header">
 			<Link to={"/"}>
@@ -14,7 +23,7 @@ const Header = () => {
 			<Link to={"/paid"}>Paid</Link>
 			<FaSearch />
 
-			{user ? (
+			{authenticated ? (
 				<Link to={"/account"}>
 					<img src="#" alt="user" />
 				</Link>
