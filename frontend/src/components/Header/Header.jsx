@@ -28,7 +28,7 @@ const Header = () => {
 					<img src="#" alt="user" />
 				</Link>
 			) : (
-				<Link to={"/register"}>Sign up</Link>
+				<Link to={"/login"}>Sign up</Link>
 			)}
 		</div>
 	)
