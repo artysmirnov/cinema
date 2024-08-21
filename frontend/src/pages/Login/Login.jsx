@@ -21,7 +21,7 @@ const Login = () => {
 		).then(action => {
 			localStorage.setItem("refresh", action.payload.refresh)
 			localStorage.setItem("token", action.payload.access)
-			localStorage.setItem("user", action.payload.user)
+			localStorage.setItem("user", JSON.stringify(action.payload.user))
 			navigate("/")
 		})
 	}

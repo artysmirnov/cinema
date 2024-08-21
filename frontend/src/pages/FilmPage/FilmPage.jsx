@@ -19,14 +19,6 @@ const FilmPage = () => {
 		dispatch(fetchMovie(params.id))
 	}, [])
 
-	function clickHeart() {
-		if (liked) {
-			setLiked(false)
-		} else {
-			setLiked(true)
-		}
-	}
-
 	return (
 		<div className="filmPage">
 			{isLoading ? (
