@@ -24,19 +24,20 @@ export const moviesSlice = createSlice({
 	name: "movies",
 	initialState,
 	reducers: {},
-	extraReducers: {
-		[fetchMovies.fulfilled]: (state, action) => {
-			state.isLoading = false
-			state.error = ""
-			state.movies = action.payload
-		},
-		[fetchMovies.pending]: state => {
-			state.isLoading = true
-		},
-		[fetchMovies.rejected]: (state, action) => {
-			state.isLoading = false
-			state.error = action.payload
-		},
+	extraReducers: builder => {
+		builder
+			.addCase(fetchMovies.fulfilled, (state, action) => {
+				state.isLoading = false
+				state.error = ""
+				state.movies = action.payload
+			})
+			.addCase(fetchMovies.pending, state => {
+				state.isLoading = true
+			})
+			.addCase(fetchMovies.rejected, (state, action) => {
+				state.isLoading = false
+				state.error = action.payload
+			})
 	},
 })
 export default moviesSlice.reducer
