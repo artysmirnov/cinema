@@ -11,7 +11,6 @@ from ..auth.permissions import UserPermission
 class AllFilmsViewSet(AbstractViewSet):
     http_method_names = ('post', 'get', 'put', 'delete')
     serializer_class = FilmSerializer
-    permission_classes = (UserPermission)
     queryset = Film.objects.all()
 
     def get_serializer_class(self):

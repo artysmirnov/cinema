@@ -5,6 +5,8 @@ import { useEffect, useState } from "react"
 import { fetchMovie } from "../../Store/SingleSlice"
 import { FaRegHeart } from "react-icons/fa6"
 import { FaHeart } from "react-icons/fa6"
+
+import { sendLike, sendUnlike } from "../../Store/LikeSlice"
 import "./filmPage.scss"
 import Stars from "./Stars"
 
@@ -12,9 +14,9 @@ const FilmPage = () => {
 	const params = useParams()
 	const dispatch = useDispatch()
 	const isLoading = useSelector(state => state.movie.isLoading)
-	const [liked, setLiked] = useState(false)
-
+	const [liked, setLiked] = useState(useSelector(state => state.like.liked))
 	const movie = useSelector(state => state.movie.movie)
+
 	useEffect(() => {
 		dispatch(fetchMovie(params.id))
 	}, [])
@@ -50,9 +52,11 @@ const FilmPage = () => {
 							className="HeartBox"
 							onClick={() => {
 								if (liked) {
+									dispatch(sendUnlike(params.id))
 									setLiked(false)
 								} else {
 									setLiked(true)
+									dispatch(sendLike(params.id))
 								}
 							}}
 						>
@@ -61,6 +65,7 @@ const FilmPage = () => {
 							) : (
 								<FaRegHeart className="heart" />
 							)}
+							<p>{movie.likes_count}</p>
 						</span>
 					</div>
 					<Stars />
