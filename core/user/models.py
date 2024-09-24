@@ -66,10 +66,28 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractModel):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
+    films_liked = models.ManyToManyField(
+        "core_film.Film",
+        related_name="liked_by"
+    )
+
     objects = UserManager()
 
     def __str__(self):
         return f"{self.email}"
+
+    def like(self, film):
+        """Add to favorites if hasnt been done yet"""
+        return self.films_liked.add(film)
+
+    def remove_like(self, film):
+        """Remove like from film"""
+        return self.films_liked.remove(film)
+
+    def has_liked(self, post):
+        """Return True if the user has liked a `post`; else
+        False"""
+        return self.posts_liked.filter(pk=post.pk).exists()
 
     @property
     def name(self):
