@@ -68,7 +68,7 @@ const FilmPage = () => {
 							<p>{movie.likes_count}</p>
 						</span>
 					</div>
-					<Stars />
+					<Stars rating={movie.average_rating} />
 					<p>Описание: {movie.description}</p>
 				</div>
 			)}

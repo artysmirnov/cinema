@@ -16,8 +16,8 @@ const labels = {
 function getLabelText(value) {
 	return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`
 }
-const Stars = () => {
-	const [value, setValue] = useState(1)
+const Stars = ({ rating }) => {
+	const [value, setValue] = useState(rating)
 	const [hover, setHover] = useState(-1)
 
 	return (
