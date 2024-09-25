@@ -1,3 +1,8 @@
 .account {
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	background-color: #0A0A0A;
+	border-radius: 15px;
 }
