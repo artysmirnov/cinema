@@ -26,7 +26,7 @@ class AllFilmsViewSet(AbstractViewSet):
         obj = Film.objects.get_object_by_public_id(self.kwargs['pk'])
         return obj
 
-    @action(methods=['post'], detail=True)
+    @action(methods=['post'], detail=True, permission_classes=[UserPermission])
     def like(self, request, *args, **kwargs):
         film = self.get_object()
         user = self.request.user
@@ -35,12 +35,21 @@ class AllFilmsViewSet(AbstractViewSet):
         serializer = self.serializer_class(film)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    @action(methods=['post'], detail=True)
+    @action(methods=['post'], detail=True,permission_classes=[UserPermission])
     def remove_like(self, request, *args, **kwargs):
         film = self.get_object()
         user = self.request.user
         user.remove_like(film)
         serializer = self.serializer_class(film)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class LikedFilmsViewSet(AbstractViewSet):
+    http_method_names = ('get',)
+    serializer_class = FilmSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        return user.liked_films.all()
 
 

@@ -52,6 +52,7 @@ class UserManager(BaseUserManager, AbstractManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin, AbstractModel):
+    public_id = models.UUIDField(db_index=True, unique=True, default=uuid.uuid4)
     username = models.CharField(db_index=True, max_length=255, unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -66,7 +67,7 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractModel):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    films_liked = models.ManyToManyField(
+    liked_films = models.ManyToManyField(
         "core_film.Film",
         related_name="liked_by"
     )
@@ -78,17 +79,20 @@ class User(AbstractBaseUser, PermissionsMixin, AbstractModel):
 
     def like(self, film):
         """Add to favorites if hasnt been done yet"""
-        return self.films_liked.add(film)
+        return self.liked_films.add(film)
 
     def remove_like(self, film):
         """Remove like from film"""
-        return self.films_liked.remove(film)
+        return self.liked_films.remove(film)
 
-    def has_liked(self, post):
-        """Return True if the user has liked a `post`; else
+    def has_liked(self, film):
+        """Return True if the user has liked a `film`; else
         False"""
-        return self.posts_liked.filter(pk=post.pk).exists()
+        return self.liked_films.filter(pk=film.pk).exists()
 
     @property
     def name(self):
         return f"{self.first_name} {self.last_name}"
+
+    def liked_films(self):
+        return self.liked_films.all()

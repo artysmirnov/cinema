@@ -12,22 +12,12 @@ from core.person.serializers import PersonSerializer
 class FilmSerializer(AbstractSerializer):
     actors = PersonSerializer(many=True)
     genre = GenreSerializer(many=True)
-    liked = serializers.SerializerMethodField()
-    likes_count = serializers.SerializerMethodField()
 
-    def get_liked(self,instance):
-        request = self.context.get('request', None)
-        if request is None or request.user.is_anonymous:
-            return False
-        return request.user.has_liked(instance)
-
-    def get_likes_count(self, instance):
-        return instance.liked_by.count()
 
     class Meta:
         model = Film
         fields = ['public_id', 'title', 'genre', 'country', 'release_date', 'photo', 'description', 'actors',
-                  'age_limit','liked',"average_rating", 'likes_count']
+                  'age_limit',"average_rating",]
 
 
 class AllFilmsSerializer(AbstractSerializer):
